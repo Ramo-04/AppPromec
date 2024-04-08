@@ -16,8 +16,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/api/Servicio", method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.HEAD})
-@CrossOrigin("*")
-public class ServicioController {
+@CrossOrigin("http://localhost:3000")public class ServicioController {
 
     @Autowired
     private ServicioImp servicioImp;
@@ -33,11 +32,11 @@ public class ServicioController {
 
             Servicio servicio = new Servicio();
 
-            servicio.setNombreServicio(request.get("nombre_servicio").toString());
+            servicio.setNombre_servicio(request.get("nombre_servicio").toString());
 
-            servicio.setDescripcionServicio(( request.get("descripcion_servicio").toString()));
+            servicio.setDescripcion_servicio(( request.get("descripcion_servicio").toString()));
 
-            servicio.setCalidadServicio(( request.get("calidad_servicio").toString()));
+            servicio.setCalidad_servicio(( request.get("calidad_servicio").toString()));
 
             servicio.setTipo_servicio(( request.get("tipo_servicio").toString()));
 
@@ -86,7 +85,7 @@ public class ServicioController {
     }
 
     //UPDATE SERVICIO
-    @GetMapping("/update/{id_servicio}")
+    @PutMapping("/update/{id_servicio}")
     public ResponseEntity<Map<String, Object>> findById(@PathVariable Long id_servicio, @RequestBody Map<String, Object> request) {
         Map<String, Object> response = new HashMap<>();
 
@@ -95,9 +94,9 @@ public class ServicioController {
 
             servicio.setTipo_servicio((String) request.get("tipo_servicio"));
 
-            servicio.setDescripcionServicio((String) request.get("descripcion_servicio"));
+            servicio.setDescripcion_servicio((String) request.get("descripcion_servicio"));
 
-            servicio.setCalidadServicio((String) request.get("calidad_servicio"));
+            servicio.setCalidad_servicio((String) request.get("calidad_servicio"));
 
             servicio.setTipo_servicio((String) request.get("tipo_servicio"));
 

@@ -1,20 +1,19 @@
 package com.AppPromec.AppPromec.Controller;
-
-
 import com.AppPromec.AppPromec.Entities.Usuario;
 import com.AppPromec.AppPromec.Service.Imp.UsuarioImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/api/Usuario/", method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.HEAD})
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:3000")
+
+
 public class UsuarioController {
 
     @Autowired
@@ -32,13 +31,13 @@ public class UsuarioController {
 
             Usuario usuario = new Usuario();
 
-            usuario.setContrasena((request.get("contraseña").toString()));
+            usuario.setContrasena(request.get("contraseña").toString());
 
-            usuario.setDireccion((request.get("direccion").toString()));
+            usuario.setDireccion(request.get("direccion").toString());
 
-            usuario.setCorreo((request.get("correo").toString()));
+            usuario.setCorreo(request.get("correo").toString());
 
-            usuario.setTelefono((request.get("telefono").toString()));
+            usuario.setTelefono(request.get("telefono").toString());
 
 
 
@@ -61,6 +60,7 @@ public class UsuarioController {
     }
     //FIND ALL USUARIO
     @GetMapping("all")
+
     public ResponseEntity<Map<String, Object>> findAll() {
 
         Map<String, Object> response = new HashMap<>();
@@ -83,6 +83,7 @@ public class UsuarioController {
     //FIND ID USUARIO
 
     @GetMapping("/list/{id_usuario}")
+
     public ResponseEntity<Map<String, Object>> findById(@PathVariable Long id_usuario) {
         Map<String, Object> response = new HashMap<>();
 
@@ -100,7 +101,8 @@ public class UsuarioController {
 
 
     //UPDATE USUARIO
-    @GetMapping("/update/{id_usuario}")
+    @PutMapping ("/update/{id_usuario}")
+
     public ResponseEntity<Map<String, Object>> findById(@PathVariable String id_usuario, @RequestBody Map<String, Object> request) {
         Map<String, Object> response = new HashMap<>();
 
@@ -108,13 +110,13 @@ public class UsuarioController {
             Usuario usuario = this.usuarioImp.findById(Long.parseLong(id_usuario));
 
 
-            usuario.setContrasena((request.get("contraseña").toString()));
+            usuario.setContrasena(request.get("contraseña").toString());
 
-            usuario.setDireccion((request.get("direccion").toString()));
+            usuario.setDireccion(request.get("direccion").toString());
 
-            usuario.setCorreo((request.get("correo").toString()));
+            usuario.setCorreo(request.get("correo").toString());
 
-            usuario.setTelefono((request.get("telefono").toString()));
+            usuario.setTelefono(request.get("telefono").toString());
 
             response.put("status", "succes");
 
@@ -134,6 +136,7 @@ public class UsuarioController {
 
     //DELETE USUARIO
     @DeleteMapping("delete/{id_usuario}")
+
     public ResponseEntity<Map<String, Object>> delete(@PathVariable Long id_usuario) {
         Map<String, Object> response = new HashMap<>();
 

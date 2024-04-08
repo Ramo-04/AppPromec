@@ -16,7 +16,8 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/api/Empleado/", method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.HEAD})
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:3000")
+
 public class EmpleadoController {
 
     @Autowired
@@ -37,11 +38,11 @@ public class EmpleadoController {
 
             Empleado empleado = new Empleado();
 
-            empleado.setSueldo(Double.parseDouble(request.get("sueldo_bruto").toString()));
+            empleado.setSueldo_bruto(Double.parseDouble(request.get("sueldo_bruto").toString()));
 
             empleado.setCargo((request.get("cargo").toString()));
 
-            empleado.setNombreCompleto((request.get("nombre_completo_empleado").toString()));
+            empleado.setNombre_completo_empleado((request.get("nombre_completo_empleado").toString()));
 
             Usuario usuario = usuarioImp.findById(Long.parseLong(request.get("id_usuario").toString()));
             empleado.setUsuario(usuario);
@@ -103,16 +104,16 @@ public class EmpleadoController {
 
 
     //UPDATE EMPLEADO
-    @GetMapping("/update/{id_empleado}")
+    @PutMapping("/update/{id_empleado}")
     public ResponseEntity<Map<String, Object>> findById(@PathVariable Long id_empleado, @RequestBody Map<String, Object> request) {
         Map<String, Object> response = new HashMap<>();
 
         try {
             Empleado empleado = this.empleadoImp.findById(id_empleado);
 
-            empleado.setNombreCompleto(request.get("nombre_completo_empleado").toString());
+            empleado.setNombre_completo_empleado(request.get("nombre_completo_empleado").toString());
             empleado.setCargo(request.get("cargo").toString());
-            empleado.setSueldo(Double.parseDouble(request.get("sueldo_bruto").toString()));
+            empleado.setSueldo_bruto(Double.parseDouble(request.get("sueldo_bruto").toString()));
 
             response.put("status", "succes");
 
